@@ -60,7 +60,7 @@ const App = () => {
 
   return (
     <div>
-      <input type="file" onChange={handleFileChange} />
+      <input type="file" accept='.pdf' onChange={handleFileChange} />
       <pre>{output}</pre>
     </div>
   );
