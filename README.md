@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# PDF Reader
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This React application extracts text from PDF files using Optical Character Recognition (OCR). The application leverages `pdfjs-dist` to read the PDF content and `tesseract.js` to perform the OCR on the rendered pages. The extracted text, along with positional data for each word, is displayed in JSON format.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Upload and process PDF files.
+- Extract text from each page using OCR.
+- Display the extracted text and word positions in JSON format.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React: For building the user interface.
+- pdfjs-dist: For reading and rendering PDF files.
+- tesseract.js: For performing OCR on rendered PDF pages.
 
-### `npm test`
+## Setup and Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the repository:**
 
-### `npm run build`
+    ```sh
+    git clone https://github.com/alfaqi/pdf-reader.git
+    cd pdf-reader
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Install the dependencies:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```sh
+    npm install
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Start the application:**
 
-### `npm run eject`
+    ```sh
+    npm start
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    The application will be available at `http://localhost:3000`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Usage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Open the application in your web browser.
+2. Click on the file input to upload a PDF file.
+3. The application will process the file and extract text from each page.
+4. The extracted text and positional data for each word will be displayed in JSON format below the file input.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Code Explanation
 
-## Learn More
+The core functionality of the application is implemented in the `App` component.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### State Management
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `output`: Stores the JSON string of the extracted data.
 
-### Code Splitting
+### File Handling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- `handleFileChange`: This asynchronous function handles file selection, processes the PDF, and performs OCR on each page.
 
-### Analyzing the Bundle Size
+### PDF Processing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- The PDF file is read as an `ArrayBuffer`.
+- `pdfjs-dist` is used to load the PDF and get the number of pages.
+- Each page is rendered onto a canvas.
 
-### Making a Progressive Web App
+### OCR Processing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- `tesseract.js` is used to recognize text from the rendered canvas.
+- The recognized words and their bounding boxes are stored.
 
-### Advanced Configuration
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Feel free to submit issues and pull requests. For major changes, please open an issue first to discuss what you would like to change.
 
-### Deployment
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
